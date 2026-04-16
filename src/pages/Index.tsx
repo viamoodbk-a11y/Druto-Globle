@@ -39,6 +39,13 @@ const Index = () => {
   };
 
   useEffect(() => {
+    // Fail-safe: If Supabase redirects to home instead of /auth/callback (URL configuration issue),
+    // bounce the user to the callback handler to ensure role assignment works.
+    if (window.location.hash.includes("access_token")) {
+      navigate(`/auth/callback${window.location.search}`, { replace: true });
+      return;
+    }
+
     const authData = localStorage.getItem("druto_auth");
     if (authData) {
       try {
