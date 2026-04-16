@@ -301,15 +301,15 @@ const Index = () => {
         <div className="rounded-2xl gradient-primary p-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-background/20 px-4 py-2 text-sm font-medium text-primary-foreground">
             <Trophy className="h-4 w-4" />
-            Trusted by businesses across India
+            Empowering modern businesses worldwide
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             <div>
-              <p className="text-4xl font-bold text-primary-foreground">500+</p>
+              <p className="text-4xl font-bold text-primary-foreground">2,500+</p>
               <p className="text-primary-foreground/80">Active Businesses</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-primary-foreground">50K+</p>
+              <p className="text-4xl font-bold text-primary-foreground">1M+</p>
               <p className="text-primary-foreground/80">Stamps Collected</p>
             </div>
             <div>
@@ -324,10 +324,10 @@ const Index = () => {
       <section className="py-12">
         <div className="gradient-primary px-5 pb-16 pt-10 text-center rounded-t-3xl mx-4 md:mx-auto max-w-5xl">
           <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
-            Simple, transparent pricing
+            Simple, transparent global pricing
           </h2>
           <p className="text-primary-foreground/80 text-sm">
-            Start free. Scale as you grow.
+            Start free. Scale as you grow anywhere in the world.
           </p>
         </div>
         <div className="px-4 -mt-8 pb-4">
@@ -335,24 +335,24 @@ const Index = () => {
             {[
               {
                 name: "Starter",
-                price: 999,
-                originalPrice: 1199,
+                price: 29,
+                originalPrice: 39,
                 locations: 1,
                 popular: false,
-                features: ["1 store location", "Unlimited QR scans", "Custom rewards", "Analytics dashboard", "FREE QR code stand"],
+                features: ["1 store location", "Unlimited QR scans", "Custom rewards", "Analytics dashboard", "Global loyalty infrastructure"],
               },
               {
                 name: "Growth",
-                price: 2499,
-                originalPrice: 2799,
+                price: 79,
+                originalPrice: 99,
                 locations: 3,
                 popular: true,
                 features: ["Up to 3 store locations", "Same QR, GPS branch detection", "Branch-wise scan analytics", "All Starter features", "Priority support"],
               },
               {
                 name: "Pro",
-                price: 4999,
-                originalPrice: 5499,
+                price: 199,
+                originalPrice: 249,
                 locations: 6,
                 popular: false,
                 features: ["Up to 6 store locations", "Same QR, GPS branch detection", "Branch-wise scan analytics", "All Growth features", "Dedicated account manager"],
@@ -377,9 +377,9 @@ const Index = () => {
                   <h3 className="text-lg font-bold text-foreground">{plan.name}</h3>
                   <div className="mt-2 text-center">
                     {plan.originalPrice && (
-                      <div className="text-muted-foreground line-through text-sm mb-1 leading-none">₹{plan.originalPrice}/yr</div>
+                      <div className="text-muted-foreground line-through text-sm mb-1 leading-none">${plan.originalPrice}/yr</div>
                     )}
-                    <span className="text-4xl font-bold text-foreground">₹{plan.price}</span>
+                    <span className="text-4xl font-bold text-foreground">${plan.price}</span>
                     <span className="text-muted-foreground text-sm">/yr</span>
                   </div>
                   <div className="mt-2 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
@@ -417,16 +417,15 @@ const Index = () => {
                 <h3 className="text-lg font-bold text-foreground">Enterprise</h3>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
-                For larger brands with unlimited locations. Custom pricing & dedicated support.
+                For global brands with unlimited locations. Custom pricing & dedicated support.
               </p>
               <div className="flex items-center justify-center gap-3">
-                <a href="tel:8446791696">
+                <a href="mailto:contact@druto.me">
                   <Button variant="outline" className="gap-2">
-                    <Phone className="h-4 w-4" />
-                    Call 8446791696
+                    Contact Sales
                   </Button>
                 </a>
-                <a href="mailto:contact@druto.in">
+                <a href="mailto:contact@druto.me">
                   <Button variant="ghost" className="text-primary">
                     Email Us
                   </Button>
@@ -460,23 +459,19 @@ const Index = () => {
             },
             {
               q: "What plans are available?",
-              a: "We offer three plans: Starter (₹999/yr, 1 location), Growth (₹2499/yr, up to 3 locations with GPS branch detection), and Pro (₹4999/yr, up to 6 locations). All plans include a 3-day free trial with no payment required. Enterprise plans with unlimited locations are also available."
+              a: "We offer three plans: Starter ($29/yr), Growth ($79/yr), and Pro ($199/yr). All plans include a 3-day free trial with no payment required. Enterprise plans with unlimited locations are also available."
             },
             {
               q: "Can I use one QR code for multiple branches?",
               a: "Yes! With the Growth and Pro plans, you use a single QR code for all your branches. Druto automatically detects which branch a customer is at using GPS location."
             },
             {
-              q: "Do I get a free QR code stand?",
-              a: "Yes! All paid plans come with a FREE physical QR code stand delivered to your business so customers can easily scan and collect stamps."
+              q: "How do customers earn stamps?",
+              a: "Customers simply scan your QR code. The app is 100% web-based, so they don't need to download anything. They just sign in with Google or Email once and start collecting."
             },
             {
-              q: "Is Druto free for customers?",
-              a: "Yes! Druto is completely free for customers. They just scan your QR code and start earning rewards. No sign-up fee, no hidden charges."
-            },
-            {
-              q: "What types of businesses can use Druto?",
-              a: "Druto works for cafés, businesses, salons, gyms, car washes, retail stores, spas — any business that wants to bring customers back with rewards."
+              q: "Is Druto really global?",
+              a: "Yes! Druto is built for businesses anywhere in the world. We support global payments via Stripe and worldwide geolocation mapping."
             },
           ].map((faq, i) => (
             <div key={i} className="rounded-2xl bg-card border border-border p-5">
@@ -490,9 +485,9 @@ const Index = () => {
       {/* Final CTA */}
       <section className="container pb-14">
         <div className="rounded-2xl bg-card border-2 border-primary/20 p-8 text-center shadow-card">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Ready to grow your business?</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Ready to grow your global business?</h2>
           <p className="text-muted-foreground mb-6">
-            Join 500+ businesses using Druto to increase repeat customers.
+            Join thousands of businesses using Druto to increase repeat customers worldwide.
           </p>
           <Link to="/auth?type=owner">
             <Button variant="hero" size="xl">
@@ -522,7 +517,7 @@ const Index = () => {
               </Link>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2025 druto. Made with ❤️ in India
+              © 2024 Druto Worldwide. Built for the world.
             </p>
           </div>
         </div>
