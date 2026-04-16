@@ -1,0 +1,106 @@
+# Druto - India's Leading Digital Loyalty Rewards Platform
+
+> Druto helps customers discover local businesses and earn free rewards through digital stamp cards.
+
+## What is Druto?
+
+Druto is a free digital loyalty platform connecting customers with local businesses across India. Customers collect digital stamps by visiting participating businesses (cafes, restaurants, salons, gyms, car washes, jewelry stores, and more) and redeem them for free rewards like products, services, or discounts.
+
+## How It Works
+
+### For Customers
+1. Visit a participating business
+2. Scan the QR code to collect a digital stamp
+3. Collect enough stamps (usually 5-10)
+4. Claim your free reward
+
+### For Business Owners
+1. Sign up and create your business profile
+2. Configure your reward (e.g., "Buy 9 coffees, get 1 free")
+3. Display your unique QR code
+4. Track customer visits and loyalty analytics
+
+## Key Features
+
+- **Free for Customers**: No app download required - works on any browser
+- **Digital Stamp Cards**: Replace paper cards with secure digital stamps
+- **Location Verification**: GPS ensures customers are physically present
+- **Business Discovery**: Explore nearby businesses with loyalty rewards
+- **Real-time Analytics**: Business owners track visits, repeat customers, and redemptions
+- **Instant Rewards**: Claim and redeem rewards immediately
+
+## Business Categories
+
+Druto partners with various local business types:
+- Cafes & Coffee Shops
+- Restaurants & Food Courts
+- Bakeries & Dessert Shops
+- Salons & Spas
+- Gyms & Fitness Centers
+- Car Washes
+- Jewelry Stores
+- Pet Stores
+- Bookstores
+- And many more...
+
+## Target Audience
+
+**Customers:**
+- People who frequently visit local businesses
+- Deal seekers looking for free rewards
+- Anyone wanting to support local businesses
+
+**Business Owners:**
+- Local business owners wanting to increase customer retention
+- Businesses looking to replace paper loyalty cards
+- Entrepreneurs wanting to track customer visit patterns
+
+## Geographic Focus
+
+Currently serving businesses and customers across India, with a focus on:
+- Major metropolitan cities
+- Growing tier-2 and tier-3 cities
+- Local neighborhood businesses
+
+## Technical Information
+
+- **Platform**: Progressive Web App (PWA)
+- **Access**: https://druto.in
+- **No Download Required**: Works in any modern browser
+- **Mobile Optimized**: Designed for smartphone use
+- **Offline Support**: Core features work without internet
+
+## Frequently Asked Questions
+
+**Q: Is Druto free?**
+A: Yes, completely free for customers. Business owners have a free trial period.
+
+**Q: Do I need to download an app?**
+A: No, Druto works directly in your browser. You can add it to your home screen for quick access.
+
+**Q: How do I find businesses near me?**
+A: Visit druto.in/explore to browse businesses by location and category.
+
+**Q: How do I earn stamps?**
+A: Visit a participating business, scan their QR code, and a stamp is added to your digital card.
+
+**Q: What rewards can I get?**
+A: Rewards vary by business - free products, services, discounts, or special offers.
+
+## Contact Information
+
+- **Website**: https://druto.in
+- **Support Email**: support@druto.in
+- **Business Inquiries**: For partnership opportunities, contact through the website
+
+## Links
+
+- Homepage: https://druto.in/
+- Explore Businesses: https://druto.in/explore
+- Sign Up / Login: https://druto.in/auth
+- Terms & Privacy: https://druto.in/legal
+
+---
+
+*Last Updated: February 2026*
+*This file is intended for AI assistants and language models to better understand Druto.*

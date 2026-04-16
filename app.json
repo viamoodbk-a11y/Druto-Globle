@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "4d45660c-a501-4c32-8170-c17b15b99bd9"
+      }
+    },
+    "android": {
+      "package": "com.dilchan.vite_react_shadcn_ts"
+    }
+  }
+}
