@@ -19,7 +19,11 @@ const Auth = () => {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback?user_type=${userType}`
+          redirectTo: `${window.location.origin}/auth/callback`,
+          data: {
+            // This metadata is stored in raw_user_meta_data
+            user_type: userType
+          }
         },
       });
       if (error) throw error;
