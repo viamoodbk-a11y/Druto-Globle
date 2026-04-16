@@ -17,6 +17,7 @@ import { useAutoUpdate } from "@/hooks/useAutoUpdate";
 // Eager-loaded routes
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
 import NotFound from "./pages/NotFound";
 
 // Eager-load layouts to avoid "Component is not a function" error
@@ -82,6 +83,7 @@ function App() {
                   {/* Public routes */}
                   <Route path="/" element={<Index />} />
                   <Route path="/auth" element={<Auth />} />
+                  <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/legal" element={<Legal />} />
                   <Route path="/pricing" element={<Pricing />} />
                   <Route path="/pay/:tier" element={<DirectPayment />} />
