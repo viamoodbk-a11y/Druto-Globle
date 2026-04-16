@@ -72,11 +72,20 @@ const AuthCallback = () => {
         }
       } catch (err) {
         console.error("Error in auth callback processing:", err);
+        // Fallback to dashboard if anything fails to prevent being stuck
         navigate("/dashboard", { replace: true });
       }
     };
 
+    // Safety timeout: If auth takes too long, redirect anyway
+    const safetyTimeout = setTimeout(() => {
+      console.log("Auth callback safety timeout reached");
+      navigate("/dashboard", { replace: true });
+    }, 8000);
+
     handleAuthCallback();
+
+    return () => clearTimeout(safetyTimeout);
   }, [navigate]);
 
   return <DrutoLoader message="Completing sign in..." />;
