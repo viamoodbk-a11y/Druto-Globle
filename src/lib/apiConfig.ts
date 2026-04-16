@@ -9,7 +9,7 @@ export const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL && import.meta.en
     ? import.meta.env.VITE_SUPABASE_URL 
     : "https://xbcizfkykozvcmoqildi.supabase.co";
 
-const isProduction = typeof window !== 'undefined' && (window.location.hostname === 'druto.in' || window.location.hostname === 'druto-globle.vercel.app');
+const isProduction = typeof window !== 'undefined' && (window.location.hostname === 'druto.in' || window.location.hostname === 'druto-globle.vercel.app' || window.location.hostname === 'druto.me');
 export const SUPABASE_FUNCTIONS_URL = `${SUPABASE_URL}/functions/v1`;
 
 export const SUPABASE_REST_URL = `${SUPABASE_URL}/rest/v1`;
