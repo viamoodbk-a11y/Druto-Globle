@@ -16,6 +16,27 @@ const AuthCallback = () => {
       let retries = 0;
       const maxRetries = 5;
 
+      // Check for code in URL (PKCE flow)
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      const error = params.get("error");
+      const errorDescription = params.get("error_description");
+      
+      console.log("Auth callback URL state:", { 
+        hasCode: !!code, 
+        hasHash: !!window.location.hash,
+        error,
+        errorDescription,
+        origin: window.location.origin,
+        pathname: window.location.pathname
+      });
+
+      if (error) {
+        console.error("Supabase Auth Error:", error, errorDescription);
+        navigate("/auth", { replace: true });
+        return;
+      }
+
       while (!session && retries < maxRetries) {
         const { data } = await supabase.auth.getSession();
         if (data.session) {
@@ -23,7 +44,8 @@ const AuthCallback = () => {
           break;
         }
         retries++;
-        await new Promise(resolve => setTimeout(resolve, 500));
+        console.log(`Session discovery attempt ${retries}/5...`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
       }
       
       if (!session) {
