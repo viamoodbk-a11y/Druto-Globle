@@ -20,21 +20,32 @@ const AuthCallback = () => {
       const userId = session.user.id;
 
       try {
-        // Fetch role from DB (now automatically set by the database trigger)
-        const { data: roleData, error: roleError } = await supabase
+        // Fetch all roles for the user to handle multi-role accounts
+        const { data: roles, error: rolesError } = await supabase
           .from("user_roles")
           .select("role")
-          .eq("user_id", userId)
-          .maybeSingle();
+          .eq("user_id", userId);
 
-        if (roleError || !roleData) {
-          console.error("Role missing, retrying in 1s...");
+        if (rolesError || !roles || roles.length === 0) {
+          console.error("Role missing, retrying in 1s...", rolesError);
           // If the trigger is still running, retry once
           setTimeout(() => navigate(window.location.pathname, { replace: true }), 1000);
           return;
         }
 
-        const role = roleData.role;
+        // Prioritize roles: admin > restaurant_owner > customer
+        const roleList = roles.map(r => r.role);
+        let role: string;
+        
+        if (roleList.includes("admin")) {
+          role = "admin";
+        } else if (roleList.includes("restaurant_owner")) {
+          role = "restaurant_owner";
+        } else {
+          role = "customer";
+        }
+
+        console.log("Determined role:", role);
 
         // Save to local storage for instant dashboard loading
         localStorage.setItem("druto_auth", JSON.stringify({
@@ -44,11 +55,14 @@ const AuthCallback = () => {
           expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000
         }));
 
-        // Update global auth state immediately to avoid race conditions with RoleGuard
+        // Update global auth state immediately
         setAuthFromLogin(userId, role as any);
 
-        // Redirect based on role
-        if (role === "restaurant_owner") {
+        // Redirect based on prioritized role
+        if (role === "admin") {
+          navigate("/admin", { replace: true });
+        } else if (role === "restaurant_owner") {
+          // Check if onboarding is needed
           const { data: restaurant } = await supabase
             .from("restaurants")
             .select("id")
@@ -56,8 +70,6 @@ const AuthCallback = () => {
             .maybeSingle();
 
           navigate(restaurant ? "/owner" : "/onboarding/owner", { replace: true });
-        } else if (role === "admin") {
-          navigate("/admin", { replace: true });
         } else {
           navigate("/dashboard", { replace: true });
         }
