@@ -1,0 +1,107 @@
+# Druto Robots.txt - Optimized for SEO & GEO (Generative Engine Optimization)
+# Canonical domain: druto.in (not www)
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+Allow: /explore
+Allow: /restaurant/
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterest
+Allow: /
+
+# AI/LLM Bots (GEO - Generative Engine Optimization)
+# OpenAI ChatGPT
+User-agent: GPTBot
+Allow: /
+Allow: /explore
+Allow: /restaurant/
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Gemini / Bard
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic Claude
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Microsoft Copilot
+User-agent: Copilot
+Allow: /
+
+# YouChat
+User-agent: YouBot
+Allow: /
+
+# Apple intelligence / Siri
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Allow: /
+
+# General crawler rules
+User-agent: *
+Allow: /
+Allow: /explore
+Allow: /restaurant/
+
+# Disallow private user pages
+Disallow: /dashboard
+Disallow: /owner
+Disallow: /profile
+Disallow: /settings
+Disallow: /scan
+Disallow: /admin
+Disallow: /onboarding/
+
+# Sitemap location
+Sitemap: https://druto.in/sitemap.xml
+
+# Host directive (canonical)
+Host: https://druto.in

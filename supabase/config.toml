@@ -1,0 +1,79 @@
+project_id = "xbcizfkykozvcmoqildi"
+
+[functions.update-restaurant]
+verify_jwt = false
+
+[functions.get-owner-profile-data]
+verify_jwt = false
+
+[functions.get-owner-dashboard-data]
+verify_jwt = false
+
+[functions.get-admin-stats]
+verify_jwt = false
+
+[functions.process-scan]
+verify_jwt = false
+
+[functions.claim-reward]
+verify_jwt = false
+
+[functions.manage-claimed-reward]
+verify_jwt = false
+
+[functions.get-rewards-data]
+verify_jwt = false
+
+[functions.manage-scan-approval]
+verify_jwt = false
+
+[functions.razorpay-create-subscription]
+verify_jwt = false
+
+[functions.razorpay-webhook]
+verify_jwt = false
+
+[functions.admin-update-subscription]
+verify_jwt = false
+
+[functions.verify-razorpay-payment]
+verify_jwt = false
+
+[functions.get-restaurant-detail]
+verify_jwt = false
+
+[functions.get-customer-data]
+verify_jwt = false
+
+[functions.msg91-auth]
+verify_jwt = false
+
+[functions.imagekit-upload]
+verify_jwt = false
+
+[functions.save-reward-config]
+verify_jwt = false
+
+[functions.ola-maps-search]
+verify_jwt = false
+
+# [functions.spin-wheel]
+# verify_jwt = false
+
+# [functions.manage-spin-config]
+# verify_jwt = false
+
+[functions.track-push-open]
+verify_jwt = false
+
+[functions.update-push-token]
+verify_jwt = false
+
+[functions.send-notification]
+verify_jwt = false
+
+[functions.owner-send-push]
+enabled = true
+verify_jwt = false
+import_map = "./functions/owner-send-push/deno.json"
+entrypoint = "./functions/owner-send-push/index.ts"
