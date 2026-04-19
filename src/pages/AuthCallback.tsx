@@ -10,6 +10,10 @@ const AuthCallback = () => {
 
   useEffect(() => {
     const handleAuthCallback = async () => {
+      // Check for pending user type from local storage (bulletproof backup)
+      const pendingType = localStorage.getItem("druto_pending_type");
+      console.log("Auth callback found pending type:", pendingType);
+      
       // More robust session retrieval with retries to handle race conditions
       // sometimes getSession() returns null immediately after redirection
       let session = null;
@@ -92,7 +96,7 @@ const AuthCallback = () => {
         const roleList = roles ? roles.map(r => r.role) : [];
         let role: string;
         
-        // Check for role in URL parameters AND user metadata (backup for DB lag)
+        // Check for role in URL parameters AND user metadata AND localStorage (backup for DB lag)
         const typeParam = params.get("type");
         const metadataRole = session.user.user_metadata?.user_type || 
                              session.user.user_metadata?.type || 
@@ -101,12 +105,18 @@ const AuthCallback = () => {
         console.log("Role detection sources:", { 
           dbRoles: roleList, 
           urlType: typeParam, 
-          metadataRole: metadataRole 
+          metadataRole: metadataRole,
+          pendingType: pendingType
         });
         
         if (roleList.includes("admin")) {
           role = "admin";
-        } else if (roleList.includes("restaurant_owner") || typeParam === "owner" || metadataRole === "owner") {
+        } else if (
+          roleList.includes("restaurant_owner") || 
+          typeParam === "owner" || 
+          metadataRole === "owner" ||
+          pendingType === "owner"
+        ) {
           role = "restaurant_owner";
           
           // If they chose owner but the DB doesn't have it yet, trigger the upgrade and WAIT for it
@@ -117,7 +127,8 @@ const AuthCallback = () => {
                  user_type: "owner", 
                  type: "owner", 
                  role: "owner",
-                 sync_role: true 
+                 sync_role: true,
+                 updated_at: new Date().toISOString() // Force metadata change even if keys exist
                } 
              });
              
@@ -126,12 +137,15 @@ const AuthCallback = () => {
              } else {
                console.log("Metadata sync successful. DB trigger should now assign the role.");
                // Optional: brief wait for trigger to commit
-               await new Promise(resolve => setTimeout(resolve, 500));
+               await new Promise(resolve => setTimeout(resolve, 800));
              }
           }
         } else {
           role = "customer";
         }
+
+        // Clear the pending type since it's now handled
+        localStorage.removeItem("druto_pending_type");
 
         console.log("Determined role:", role);
 

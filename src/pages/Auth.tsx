@@ -27,6 +27,12 @@ const Auth = () => {
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
+    
+    // Store pending user type in localStorage as a bulletproof backup 
+    // because URL parameters and OAuth metadata are unreliable for existing users
+    localStorage.setItem("druto_pending_type", userType);
+    console.log("Stored pending user type:", userType);
+    
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
