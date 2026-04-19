@@ -10,9 +10,24 @@ const AuthCallback = () => {
 
   useEffect(() => {
     const handleAuthCallback = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      // More robust session retrieval with retries to handle race conditions
+      // sometimes getSession() returns null immediately after redirection
+      let session = null;
+      let retries = 0;
+      const maxRetries = 5;
+
+      while (!session && retries < maxRetries) {
+        const { data } = await supabase.auth.getSession();
+        if (data.session) {
+          session = data.session;
+          break;
+        }
+        retries++;
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
       
       if (!session) {
+        console.error("Auth callback: No session found after retries. Redirecting to login.");
         navigate("/auth", { replace: true });
         return;
       }
@@ -21,16 +36,34 @@ const AuthCallback = () => {
 
       try {
         // Fetch all roles for the user to handle multi-role accounts
-        const { data: roles, error: rolesError } = await supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", userId);
+        // We retry role fetching specifically to wait for the DB trigger if it's lagging
+        let roles = null;
+        let rolesError = null;
+        let roleAttempts = 0;
 
-        if (rolesError || !roles || roles.length === 0) {
-          console.error("Role missing, retrying in 1s...", rolesError);
-          // If the trigger is still running, retry once
-          setTimeout(() => navigate(window.location.pathname, { replace: true }), 1000);
-          return;
+        while (roleAttempts < 3) {
+          const { data, error } = await supabase
+            .from("user_roles")
+            .select("role")
+            .eq("user_id", userId);
+          
+          if (!error && data && data.length > 0) {
+            roles = data;
+            break;
+          }
+          
+          rolesError = error;
+          roleAttempts++;
+          console.log(`Role fetch attempt ${roleAttempts} failed, retrying...`);
+          await new Promise(resolve => setTimeout(resolve, 1500));
+        }
+
+        if (!roles || roles.length === 0) {
+          console.error("Role missing after retries:", rolesError);
+          // If still no role, default to customer to avoid getting stuck
+          // if they are actually an owner, they can fix it in onboarding
+          console.log("Fallback to customer role");
+          roles = [{ role: "customer" }];
         }
 
         // Prioritize roles: admin > restaurant_owner > customer
@@ -74,7 +107,7 @@ const AuthCallback = () => {
           navigate("/dashboard", { replace: true });
         }
       } catch (err) {
-        console.error("Auth callback error:", err);
+        console.error("Auth callback error during role processing:", err);
         navigate("/dashboard", { replace: true });
       }
     };

@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import drutoLogo from "@/assets/druto-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { isAuthenticated, role, isLoading: authLoading } = useAuth();
   const isOwner = searchParams.get("type") === "owner";
   const [isLoading, setIsLoading] = useState(false);
   const [userType, setUserType] = useState<"customer" | "owner">(
     isOwner ? "owner" : "customer"
   );
+
+  // Redirect already authenticated users
+  useEffect(() => {
+    if (!authLoading && isAuthenticated && role) {
+      if (role === "admin") navigate("/admin", { replace: true });
+      else if (role === "restaurant_owner") navigate("/owner", { replace: true });
+      else navigate("/dashboard", { replace: true });
+    }
+  }, [authLoading, isAuthenticated, role, navigate]);
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
