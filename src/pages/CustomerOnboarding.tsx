@@ -1,17 +1,18 @@
 import { SUPABASE_FUNCTIONS_URL, ANON_KEY } from "@/lib/apiConfig";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, ArrowRight, Loader2 } from "lucide-react";
+import { User, Phone, ArrowRight, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import drutoLogo from "@/assets/druto-logo.png";
-import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 const customerSchema = z.object({
   fullName: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
+  phone: z.string().regex(/^\d{10}$/, "Please enter a valid 10-digit phone number"),
 });
 
 const CustomerOnboarding = () => {
@@ -19,15 +20,47 @@ const CustomerOnboarding = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [fullName, setFullName] = useState("");
-  const [errors, setErrors] = useState<{ fullName?: string }>({});
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<{ fullName?: string; phone?: string }>({});
+
+  useEffect(() => {
+    const fetchInitialData = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user) return;
+
+      // Try metadata first (from Google)
+      const nameFromMeta = session.user.user_metadata?.full_name || 
+                          session.user.user_metadata?.name;
+      
+      // Then try profile
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("full_name, phone_number")
+        .eq("id", session.user.id)
+        .maybeSingle();
+
+      if (profile?.full_name && profile.full_name !== 'User') {
+        setFullName(profile.full_name);
+      } else if (nameFromMeta) {
+        setFullName(nameFromMeta);
+      }
+
+      if (profile?.phone_number) {
+        setPhone(profile.phone_number);
+      }
+    };
+    fetchInitialData();
+  }, []);
 
   const handleSubmit = async () => {
     // Validate input
-    const result = customerSchema.safeParse({ fullName });
+    const result = customerSchema.safeParse({ fullName, phone });
     if (!result.success) {
-      const fieldErrors: { fullName?: string } = {};
+      const fieldErrors: { fullName?: string; phone?: string } = {};
       result.error.errors.forEach((err) => {
-        if (err.path[0] === "fullName") fieldErrors.fullName = err.message;
+        const path = err.path[0] as string;
+        if (path === "fullName") fieldErrors.fullName = err.message;
+        if (path === "phone") fieldErrors.phone = err.message;
       });
       setErrors(fieldErrors);
       return;
@@ -68,6 +101,7 @@ const CustomerOnboarding = () => {
           body: JSON.stringify({
             userId,
             fullName: fullName.trim(),
+            phone: phone.trim(),
           }),
         }
       );
@@ -81,12 +115,13 @@ const CustomerOnboarding = () => {
       // Update localStorage
       const updatedAuth = {
         ...JSON.parse(authData),
-        profile: { full_name: fullName.trim() },
+        profile: { 
+          full_name: fullName.trim(),
+          phone_number: phone.trim() 
+        },
         onboardingComplete: true,
       };
       localStorage.setItem("druto_auth", JSON.stringify(updatedAuth));
-
-      // Success toast removed (keep UX quiet)
 
       const postAuthRedirect = localStorage.getItem("druto_post_auth_redirect");
       if (postAuthRedirect) {
@@ -114,7 +149,6 @@ const CustomerOnboarding = () => {
         <div className="flex items-center gap-2">
           <div className="h-1 w-8 rounded-full bg-primary" />
           <div className="h-1 w-8 rounded-full bg-primary" />
-          <div className="h-1 w-2 rounded-full bg-muted" />
         </div>
       </div>
 
@@ -123,17 +157,19 @@ const CustomerOnboarding = () => {
           {/* Header */}
           <div className="mb-10">
             <h1 className="text-3xl font-bold text-foreground tracking-tight leading-tight mb-3">
-              What should we call you? 👋
+              Almost there! 🚀
             </h1>
             <p className="text-muted-foreground">
-              Just your name – that's all we need to get you started!
+              Confirm your details to start earning rewards.
             </p>
           </div>
 
           {/* Error display */}
-          {errors.fullName && (
+          {(errors.fullName || errors.phone) && (
             <div className="mb-6 p-3 rounded-xl bg-destructive/10 border border-destructive/20">
-              <p className="text-sm text-destructive text-center">{errors.fullName}</p>
+              <p className="text-sm text-destructive text-center">
+                {errors.fullName || errors.phone}
+              </p>
             </div>
           )}
 
@@ -152,7 +188,24 @@ const CustomerOnboarding = () => {
                   onChange={(e) => setFullName(e.target.value)}
                   className="h-14 text-lg pl-12 tracking-wide rounded-xl bg-muted/50 border-border/50 focus:bg-background transition-colors"
                   maxLength={100}
-                  autoFocus
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  <Phone className="h-5 w-5" />
+                </span>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="10-digit mobile number"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                  className="h-14 text-lg pl-12 tracking-wide rounded-xl bg-muted/50 border-border/50 focus:bg-background transition-colors"
+                  inputMode="numeric"
                 />
               </div>
             </div>
@@ -162,13 +215,13 @@ const CustomerOnboarding = () => {
               size="lg"
               className="w-full h-14 text-base rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={handleSubmit}
-              disabled={isLoading || fullName.trim().length < 2}
+              disabled={isLoading || fullName.trim().length < 2 || phone.length < 10}
             >
               {isLoading ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               ) : (
                 <>
-                  Let's Go!
+                  Get Started
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </>
               )}

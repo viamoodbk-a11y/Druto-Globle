@@ -173,7 +173,19 @@ const AuthCallback = () => {
 
           navigate(restaurant ? "/owner" : "/onboarding/owner", { replace: true });
         } else {
-          navigate("/dashboard", { replace: true });
+          // Check if customer needs onboarding (missing phone)
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("phone_number")
+            .eq("id", userId)
+            .maybeSingle();
+
+          if (!profile?.phone_number) {
+            console.log("Customer missing phone number, redirecting to onboarding");
+            navigate("/onboarding/customer", { replace: true });
+          } else {
+            navigate("/dashboard", { replace: true });
+          }
         }
       } catch (err) {
         console.error("Auth callback error during role processing:", err);
