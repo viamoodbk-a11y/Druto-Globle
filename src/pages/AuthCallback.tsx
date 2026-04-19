@@ -88,14 +88,47 @@ const AuthCallback = () => {
           roles = [{ role: "customer" }];
         }
 
-        // Prioritize roles: admin > restaurant_owner > customer
-        const roleList = roles.map(r => r.role);
+        // Prioritize roles from DB
+        const roleList = roles ? roles.map(r => r.role) : [];
         let role: string;
+        
+        // Check for role in URL parameters AND user metadata (backup for DB lag)
+        const typeParam = params.get("type");
+        const metadataRole = session.user.user_metadata?.user_type || 
+                             session.user.user_metadata?.type || 
+                             session.user.user_metadata?.role;
+        
+        console.log("Role detection sources:", { 
+          dbRoles: roleList, 
+          urlType: typeParam, 
+          metadataRole: metadataRole 
+        });
         
         if (roleList.includes("admin")) {
           role = "admin";
-        } else if (roleList.includes("restaurant_owner")) {
+        } else if (roleList.includes("restaurant_owner") || typeParam === "owner" || metadataRole === "owner") {
           role = "restaurant_owner";
+          
+          // If they chose owner but the DB doesn't have it yet, trigger the upgrade and WAIT for it
+          if (!roleList.includes("restaurant_owner")) {
+             console.log("Owner choice detected but role missing from DB. Syncing metadata to trigger DB update...");
+             const { error: updateError } = await supabase.auth.updateUser({ 
+               data: { 
+                 user_type: "owner", 
+                 type: "owner", 
+                 role: "owner",
+                 sync_role: true 
+               } 
+             });
+             
+             if (updateError) {
+               console.error("Failed to sync role metadata:", updateError);
+             } else {
+               console.log("Metadata sync successful. DB trigger should now assign the role.");
+               // Optional: brief wait for trigger to commit
+               await new Promise(resolve => setTimeout(resolve, 500));
+             }
+          }
         } else {
           role = "customer";
         }
