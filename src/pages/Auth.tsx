@@ -33,8 +33,10 @@ const Auth = () => {
         options: {
           redirectTo: `${window.location.origin}/auth/callback`,
           data: {
-            // This metadata is stored in raw_user_meta_data
-            user_type: userType
+            // Send multiple keys for redundancy to ensure the DB trigger 
+            // catches the 'owner' choice regardless of naming conventions
+            user_type: userType,
+            type: userType
           }
         },
       });
