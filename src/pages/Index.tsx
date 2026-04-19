@@ -309,7 +309,7 @@ const Index = () => {
         <div className="rounded-2xl gradient-primary p-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-background/20 px-4 py-2 text-sm font-medium text-primary-foreground">
             <Trophy className="h-4 w-4" />
-            Empowering modern businesses worldwide
+            Empowering modern businesses to thrive
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             <div>
@@ -332,10 +332,10 @@ const Index = () => {
       <section className="py-12">
         <div className="gradient-primary px-5 pb-16 pt-10 text-center rounded-t-3xl mx-4 md:mx-auto max-w-5xl">
           <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
-            Simple, transparent global pricing
+            Simple, transparent pricing
           </h2>
           <p className="text-primary-foreground/80 text-sm">
-            Start free. Scale as you grow anywhere in the world.
+            Start free. Scale as you grow.
           </p>
         </div>
         <div className="px-4 -mt-8 pb-4">
@@ -347,7 +347,7 @@ const Index = () => {
                 originalPrice: 39,
                 locations: 1,
                 popular: false,
-                features: ["1 store location", "Unlimited QR scans", "Custom rewards", "Analytics dashboard", "Global loyalty infrastructure"],
+                features: ["1 store location", "Unlimited QR scans", "Custom rewards", "Analytics dashboard", "Modern loyalty infrastructure"],
               },
               {
                 name: "Growth",
@@ -425,7 +425,7 @@ const Index = () => {
                 <h3 className="text-lg font-bold text-foreground">Enterprise</h3>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
-                For global brands with unlimited locations. Custom pricing & dedicated support.
+                For large brands with unlimited locations. Custom pricing & dedicated support.
               </p>
               <div className="flex items-center justify-center gap-3">
                 <a href="mailto:contact@druto.me">
@@ -478,8 +478,7 @@ const Index = () => {
               a: "Customers simply scan your QR code. The app is 100% web-based, so they don't need to download anything. They just sign in with Google or Email once and start collecting."
             },
             {
-              q: "Is Druto really global?",
-              a: "Yes! Druto is built for businesses anywhere in the world. We support global payments via Stripe and worldwide geolocation mapping."
+              a: "Yes! Druto is built for businesses of all sizes. We support reliable payments via Stripe and precise geolocation mapping."
             },
           ].map((faq, i) => (
             <div key={i} className="rounded-2xl bg-card border border-border p-5">
@@ -493,9 +492,9 @@ const Index = () => {
       {/* Final CTA */}
       <section className="container pb-14">
         <div className="rounded-2xl bg-card border-2 border-primary/20 p-8 text-center shadow-card">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Ready to grow your global business?</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Ready to grow your business?</h2>
           <p className="text-muted-foreground mb-6">
-            Join thousands of businesses using Druto to increase repeat customers worldwide.
+            Join thousands of businesses using Druto to increase repeat customers.
           </p>
           <Link to="/auth?type=owner">
             <Button variant="hero" size="xl">
@@ -525,7 +524,7 @@ const Index = () => {
               </Link>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2024 Druto Worldwide. Built for the world.
+              © 2024 Druto. Built for success.
             </p>
           </div>
         </div>

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import drutoLogo from "@/assets/druto-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import drutoLogo from "@/assets/druto-logo-gift.png";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
@@ -54,59 +53,57 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col overflow-hidden relative">
-      {/* Abstract Background Decoration */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen bg-[#FCF8ED] text-[#1A1A1A] flex flex-col items-center justify-between p-8 md:p-12 selection:bg-red-100 overflow-x-hidden font-sans">
+      {/* Top Bar Progress */}
+      <div className="w-full max-w-md flex items-center justify-start gap-2 mb-8">
+        <div className="h-1.5 w-12 bg-[#8B0000] rounded-full" />
+        <div className="h-1.5 w-1.5 bg-[#E5E5E5] rounded-full" />
+        <div className="h-1.5 w-1.5 bg-[#E5E5E5] rounded-full" />
+      </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-6 relative z-10">
-        <div className="w-full max-w-[400px] flex flex-col items-center">
-          {/* Logo */}
-          <div className="mb-12 animate-in fade-in zoom-in duration-700">
-            <img src={drutoLogo} alt="Druto" className="h-12 w-auto brightness-0 invert" />
-          </div>
+      <div className="w-full max-w-md flex-1 flex flex-col justify-center gap-10 md:gap-14">
+        {/* Header */}
+        <div className="space-y-4">
+          <h1 className="text-[36px] md:text-[42px] font-bold leading-tight tracking-tight text-[#1A1A1A]">
+            Grow your business with loyalty! {userType === 'owner' ? '🏨' : '✨'}
+          </h1>
+          <p className="text-[#666666] text-lg leading-relaxed max-w-[300px]">
+            {userType === "customer" 
+              ? "Sign in to access your rewards" 
+              : "Sign in to set up your loyalty program"}
+          </p>
+        </div>
 
-          {/* Header */}
-          <div className="text-center mb-10 space-y-3">
-            <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
-              Welcome to Druto
-            </h1>
-            <p className="text-slate-400 text-lg">
-              {userType === "customer" 
-                ? "Your global rewards companion" 
-                : "Manage your global business loyalty"}
-            </p>
-          </div>
+        {/* User Type Selector */}
+        <div className="p-1.5 bg-[#F5F1E6] rounded-[24px] flex w-fit min-w-[300px]">
+          <button
+            onClick={() => setUserType("customer")}
+            className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-[20px] text-sm font-semibold transition-all duration-300 ${
+              userType === "customer" 
+              ? "bg-white text-[#1A1A1A] shadow-sm" 
+              : "text-[#807D75] hover:text-[#1A1A1A]"
+            }`}
+          >
+            <span className="text-base">✨</span> Customer
+          </button>
+          <button
+            onClick={() => setUserType("owner")}
+            className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-[20px] text-sm font-semibold transition-all duration-300 ${
+              userType === "owner" 
+              ? "bg-white text-[#1A1A1A] shadow-sm" 
+              : "text-[#807D75] hover:text-[#1A1A1A]"
+            }`}
+          >
+            <span className="text-base">🏨</span> Business
+          </button>
+        </div>
 
-          {/* User Type Selector */}
-          <div className="w-full p-1 bg-slate-900/50 backdrop-blur-xl rounded-2xl border border-white/5 mb-8 flex">
-            <button
-              onClick={() => setUserType("customer")}
-              className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                userType === "customer" 
-                ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
-                : "text-slate-400 hover:text-white"
-              }`}
-            >
-              Customer
-            </button>
-            <button
-              onClick={() => setUserType("owner")}
-              className={`flex-1 py-3 px-4 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                userType === "owner" 
-                ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.1)]" 
-                : "text-slate-400 hover:text-white"
-              }`}
-            >
-              Business
-            </button>
-          </div>
-
-          {/* Google Login Button */}
+        {/* Google Login Section */}
+        <div className="space-y-6">
           <button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="group relative w-full h-16 flex items-center justify-center gap-4 bg-white hover:bg-slate-100 text-black rounded-2xl font-bold text-lg transition-all duration-300 active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100 overflow-hidden"
+            className="w-full h-[64px] flex items-center justify-center gap-3 bg-[#C4877F] hover:bg-[#B77D73] text-white rounded-[18px] font-bold text-lg shadow-lg shadow-[#C88E84]/20 transition-all duration-200 active:scale-[0.98] disabled:opacity-70 disabled:active:scale-100"
           >
             {isLoading ? (
               <Loader2 className="w-6 h-6 animate-spin" />
@@ -127,30 +124,26 @@ const Auth = () => {
                   />
                   <path
                     fill="currentColor"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
                 Continue with Google
               </>
             )}
-            
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12" />
           </button>
 
-          <p className="mt-8 text-slate-500 text-sm text-center max-w-[280px]">
-            By continuing, you agree to our{" "}
-            <Link to="/legal?section=terms" className="text-white hover:underline underline-offset-4">Terms</Link>
+          <p className="text-center text-[13px] leading-relaxed text-[#807D75]">
+            By proceeding, you agree to Druto's{" "}
+            <Link to="/legal?section=terms" className="text-[#8B0000] hover:underline font-bold">T&C</Link>
             {" "}and{" "}
-            <Link to="/legal?section=privacy" className="text-white hover:underline underline-offset-4">Privacy</Link>
+            <Link to="/legal?section=privacy" className="text-[#8B0000] hover:underline font-bold">Privacy Policy</Link>
           </p>
         </div>
       </div>
 
-      <div className="py-8 flex flex-col items-center gap-4 relative z-10">
-        <div className="h-px w-12 bg-slate-800" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-slate-600 font-bold">
-          © 2024 Druto Worldwide
-        </span>
+      {/* Footer Logo */}
+      <div className="pt-8 opacity-[0.05] hover:opacity-[0.1] transition-opacity">
+        <img src={drutoLogo} alt="" className="h-10 w-auto brightness-0" />
       </div>
     </div>
   );
