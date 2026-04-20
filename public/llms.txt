@@ -65,7 +65,7 @@ Currently serving businesses and customers across India, with a focus on:
 ## Technical Information
 
 - **Platform**: Progressive Web App (PWA)
-- **Access**: https://druto.in
+- **Access**: https://druto.me
 - **No Download Required**: Works in any modern browser
 - **Mobile Optimized**: Designed for smartphone use
 - **Offline Support**: Core features work without internet
@@ -79,7 +79,7 @@ A: Yes, completely free for customers. Business owners have a free trial period.
 A: No, Druto works directly in your browser. You can add it to your home screen for quick access.
 
 **Q: How do I find businesses near me?**
-A: Visit druto.in/explore to browse businesses by location and category.
+A: Visit druto.me/explore to browse businesses by location and category.
 
 **Q: How do I earn stamps?**
 A: Visit a participating business, scan their QR code, and a stamp is added to your digital card.
@@ -89,16 +89,16 @@ A: Rewards vary by business - free products, services, discounts, or special off
 
 ## Contact Information
 
-- **Website**: https://druto.in
-- **Support Email**: support@druto.in
+- **Website**: https://druto.me
+- **Support Email**: support@druto.me
 - **Business Inquiries**: For partnership opportunities, contact through the website
 
 ## Links
 
-- Homepage: https://druto.in/
-- Explore Businesses: https://druto.in/explore
-- Sign Up / Login: https://druto.in/auth
-- Terms & Privacy: https://druto.in/legal
+- Homepage: https://druto.me/
+- Explore Businesses: https://druto.me/explore
+- Sign Up / Login: https://druto.me/auth
+- Terms & Privacy: https://druto.me/legal
 
 ---
 

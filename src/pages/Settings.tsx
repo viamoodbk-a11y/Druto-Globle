@@ -128,7 +128,7 @@ const Settings = () => {
         `Name: ${supportForm.name}\nEmail: ${supportForm.email}\n\nMessage:\n${supportForm.message}`
       );
 
-      window.location.href = `mailto:contact@druto.in?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:contact@druto.me?subject=${subject}&body=${body}`;
 
       // Success toast removed (keep UX quiet)
       setSupportForm({ name: "", email: "", subject: "", message: "" });
@@ -444,7 +444,7 @@ const Settings = () => {
                   ) : (
                     <Send className="mr-2 h-4 w-4" />
                   )}
-                  Send to contact@druto.in
+                  Send to contact@druto.me
                 </Button>
               </div>
             </div>
@@ -452,8 +452,8 @@ const Settings = () => {
             <div className="rounded-2xl bg-muted/50 p-4 text-center">
               <p className="text-sm text-muted-foreground">
                 You can also email us directly at{" "}
-                <a href="mailto:contact@druto.in" className="text-primary font-medium">
-                  contact@druto.in
+                <a href="mailto:contact@druto.me" className="text-primary font-medium">
+                  contact@druto.me
                 </a>
               </p>
             </div>
@@ -498,7 +498,7 @@ const Settings = () => {
                   Upgrade or Change Plan
                 </Button>
                 <p className="text-center text-xs text-muted-foreground">
-                  Need custom features? Contact us at contact@druto.in
+                  Need custom features? Contact us at contact@druto.me
                 </p>
               </div>
             </div>

@@ -3,8 +3,9 @@ import App from "./App.tsx";
 import "./index.css";
 
 // Enforce canonical domain (non-www) to ensure localStorage/session persistence
-if (window.location.hostname === "www.druto.in") {
-  window.location.replace(`https://druto.in${window.location.pathname}${window.location.search}`);
+if (window.location.hostname === "www.druto.me" || window.location.hostname === "www.druto.me") {
+  const targetHost = window.location.hostname.includes("druto.me") ? "druto.me" : "druto.me";
+  window.location.replace(`https://${targetHost}${window.location.pathname}${window.location.search}`);
 }
 
 // Prevent intermittent blank screens caused by stale cached JS chunks after deploy.

@@ -220,14 +220,14 @@ export default function LoginScreen() {
                             By proceeding, you agree to Druto's{' '}
                             <Text
                                 style={{ color: PRIMARY, fontWeight: '600' }}
-                                onPress={() => Linking.openURL('https://druto.in/legal?section=terms')}
+                                onPress={() => Linking.openURL('https://druto.me/legal?section=terms')}
                             >
                                 Terms
                             </Text>
                             {' '}and{' '}
                             <Text
                                 style={{ color: PRIMARY, fontWeight: '600' }}
-                                onPress={() => Linking.openURL('https://druto.in/legal?section=privacy')}
+                                onPress={() => Linking.openURL('https://druto.me/legal?section=privacy')}
                             >
                                 Privacy Policy
                             </Text>

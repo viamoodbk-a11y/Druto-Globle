@@ -41,7 +41,7 @@ function QRImage({ value, size = 160 }: { value: string; size?: number }) {
 
 // ─── Overview Tab ─────────────────────────────────────────────────────────────
 function OverviewTab({ restaurant, rewards, stats, pendingScans, refetch, subDetails, onUpgrade }: any) {
-    const scanUrl = `https://druto.in/scan/${restaurant?.slug || restaurant?.id}`;
+    const scanUrl = `https://druto.me/scan/${restaurant?.slug || restaurant?.id}`;
     const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(scanUrl)}&margin=10`;
     const posterRef = useRef<ViewShot>(null);
 
@@ -911,7 +911,7 @@ function ProfileModal({ visible, onClose, restaurant, onSignOut, refetch, subDet
         try {
             const subject = encodeURIComponent(support.subject || 'Business Support Request');
             const body = encodeURIComponent(`Name: ${support.name}\nEmail: ${support.email}\n\nMessage:\n${support.message}`);
-            await Linking.openURL(`mailto:support@druto.in?subject=${subject}&body=${body}`);
+            await Linking.openURL(`mailto:support@druto.me?subject=${subject}&body=${body}`);
             setSupport({ name: '', email: '', subject: '', message: '' });
             setSettingsSection(null);
         } catch { Alert.alert('Error', 'Could not open email client'); }
@@ -1135,7 +1135,7 @@ function ProfileModal({ visible, onClose, restaurant, onSignOut, refetch, subDet
                         <View><Text style={lbl}>Subject</Text><TextInput value={support.subject} onChangeText={v => setSupport(p => ({ ...p, subject: v }))} placeholder="What's this about?" placeholderTextColor="#9CA3AF" style={inp} /></View>
                         <View><Text style={lbl}>Message *</Text><TextInput value={support.message} onChangeText={v => setSupport(p => ({ ...p, message: v }))} placeholder="Describe your issue..." placeholderTextColor="#9CA3AF" multiline numberOfLines={4} style={[inp, { height: 100, textAlignVertical: 'top', paddingTop: 12 }]} /></View>
                         <TouchableOpacity onPress={handleSendSupport} disabled={sendingSupport} style={{ height: 48, borderRadius: 14, backgroundColor: P, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                            {sendingSupport ? <ActivityIndicator color="white" size="small" /> : <><Info size={18} color="white" /><Text style={{ color: 'white', fontSize: 15, fontWeight: '700' }}>Send to support@druto.in</Text></>}
+                            {sendingSupport ? <ActivityIndicator color="white" size="small" /> : <><Info size={18} color="white" /><Text style={{ color: 'white', fontSize: 15, fontWeight: '700' }}>Send to support@druto.me</Text></>}
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -1517,15 +1517,15 @@ function ProfileModal({ visible, onClose, restaurant, onSignOut, refetch, subDet
 
                             {/* ── Legal */}
                             <View style={[card, { padding: 0, overflow: 'hidden' }]}>
-                                <TouchableOpacity onPress={() => Linking.openURL('https://druto.in/legal?section=privacy')} style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 14, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' }}>
+                                <TouchableOpacity onPress={() => Linking.openURL('https://druto.me/legal?section=privacy')} style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 14, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' }}>
                                     <Text style={{ flex: 1, fontSize: 14, fontWeight: '500', color: '#374151' }}>Privacy Policy</Text>
                                     <ChevronRight size={18} color="#9CA3AF" />
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => Linking.openURL('https://druto.in/legal?section=terms')} style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 14, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' }}>
+                                <TouchableOpacity onPress={() => Linking.openURL('https://druto.me/legal?section=terms')} style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 14, borderBottomWidth: 1, borderBottomColor: '#F3F4F6' }}>
                                     <Text style={{ flex: 1, fontSize: 14, fontWeight: '500', color: '#374151' }}>Terms of Service</Text>
                                     <ChevronRight size={18} color="#9CA3AF" />
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => Linking.openURL('https://druto.in/legal?section=refund')} style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 14 }}>
+                                <TouchableOpacity onPress={() => Linking.openURL('https://druto.me/legal?section=refund')} style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 14 }}>
                                     <Text style={{ flex: 1, fontSize: 14, fontWeight: '500', color: '#374151' }}>Refund Policy</Text>
                                     <ChevronRight size={18} color="#9CA3AF" />
                                 </TouchableOpacity>

@@ -64,7 +64,7 @@ export default function RewardsScreen() {
                             >
                                 <View className="h-16 w-16 bg-amber-50 rounded-2xl items-center justify-center overflow-hidden border border-amber-100">
                                     {reward.logoUrl ? (
-                                        <Image source={{ uri: Math.random() > 0.5 ? reward.logoUrl : 'https://druto.in/api/proxy/storage/v1/object/public/logos/default-restaurant.png' }} className="h-full w-full" />
+                                        <Image source={{ uri: Math.random() > 0.5 ? reward.logoUrl : 'https://druto.me/api/proxy/storage/v1/object/public/logos/default-restaurant.png' }} className="h-full w-full" />
                                     ) : (
                                         <Text className="text-2xl">{reward.icon}</Text>
                                     )}

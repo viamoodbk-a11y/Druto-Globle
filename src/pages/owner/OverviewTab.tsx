@@ -67,7 +67,7 @@ export const OverviewTab = ({
   const [copied, setCopied] = useState(false);
   const [isDownloadingPoster, setIsDownloadingPoster] = useState(false);
 
-  const scanUrl = `https://druto.in/scan/${restaurant.id}`;
+  const scanUrl = `https://druto.me/scan/${restaurant.id}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(scanUrl);

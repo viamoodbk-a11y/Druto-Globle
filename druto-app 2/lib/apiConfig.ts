@@ -5,7 +5,7 @@
  */
 
 // Mobile uses full URL (can't use relative paths)
-const BASE_URL = "https://druto.in/api/proxy";
+const BASE_URL = "https://druto.me/api/proxy";
 
 export const SUPABASE_FUNCTIONS_URL = `${BASE_URL}/functions/v1`;
 export const SUPABASE_REST_URL = `${BASE_URL}/rest/v1`;

@@ -124,7 +124,7 @@ const Scanner = () => {
   }, []);
 
   const extractRestaurantId = useCallback((qrData: string): string | null => {
-    // Expected QR: https://druto.in/scan/<restaurantId>
+    // Expected QR: https://druto.me/scan/<restaurantId>
     try {
       const url = new URL(qrData);
       const parts = url.pathname.split("/").filter(Boolean);

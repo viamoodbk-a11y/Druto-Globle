@@ -165,7 +165,7 @@ const OwnerSettings = () => {
         `Name: ${supportForm.name}\nEmail: ${supportForm.email}\n\nMessage:\n${supportForm.message}`
       );
 
-      window.location.href = `mailto:contact@druto.in?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:contact@druto.me?subject=${subject}&body=${body}`;
 
       setSupportForm({ name: "", email: "", subject: "", message: "" });
       setActiveSection(null);
@@ -370,7 +370,7 @@ const OwnerSettings = () => {
                   <div className="pt-2 border-t border-border">
                     <p className="text-xs text-muted-foreground text-center mb-4">
                       Need help? Contact{" "}
-                      <a href="mailto:contact@druto.in" className="text-primary">contact@druto.in</a>
+                      <a href="mailto:contact@druto.me" className="text-primary">contact@druto.me</a>
                     </p>
                     <Link to="/pricing" className="block w-full">
                       <Button variant="outline" className="w-full">

@@ -226,7 +226,7 @@ const Pricing = () => {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild className="h-12 px-8 rounded-xl bg-white text-black font-bold hover:bg-slate-200 w-full sm:w-auto">
-                <a href="mailto:contact@druto.in">Contact Sales</a>
+                <a href="mailto:contact@druto.me">Contact Sales</a>
               </Button>
               <Button variant="ghost" className="h-12 px-8 rounded-xl text-white font-semibold hover:bg-white/5 w-full sm:w-auto">
                 View Documentation

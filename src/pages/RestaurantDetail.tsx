@@ -305,7 +305,7 @@ const RestaurantDetail = () => {
       updateMetaTag('og:title', `${restaurant.name} - Earn Free Rewards | Druto`);
       updateMetaTag('og:description', metaDescription);
       updateMetaTag('og:type', 'business.business');
-      updateMetaTag('og:url', `https://druto.in/restaurant/${restaurant.slug}`);
+      updateMetaTag('og:url', `https://druto.me/restaurant/${restaurant.slug}`);
       if (restaurant.logoUrl) {
         updateMetaTag('og:image', restaurant.logoUrl);
       }
@@ -324,8 +324,8 @@ const RestaurantDetail = () => {
         "@type": "LocalBusiness",
         "name": restaurant.name,
         "description": restaurant.rewardDescription,
-        "url": `https://druto.in/restaurant/${restaurant.slug}`,
-        "@id": `https://druto.in/restaurant/${restaurant.slug}#business`,
+        "url": `https://druto.me/restaurant/${restaurant.slug}`,
+        "@id": `https://druto.me/restaurant/${restaurant.slug}#business`,
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": (restaurant.rating || 4.5).toString(),

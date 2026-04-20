@@ -1,5 +1,5 @@
 # Druto Robots.txt - Optimized for SEO & GEO (Generative Engine Optimization)
-# Canonical domain: druto.in (not www)
+# Canonical domain: druto.me (not www)
 
 # Allow all major search engines
 User-agent: Googlebot
@@ -101,7 +101,7 @@ Disallow: /admin
 Disallow: /onboarding/
 
 # Sitemap location
-Sitemap: https://druto.in/sitemap.xml
+Sitemap: https://druto.me/sitemap.xml
 
 # Host directive (canonical)
-Host: https://druto.in
+Host: https://druto.me

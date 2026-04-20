@@ -120,8 +120,8 @@ const Legal = () => {
               <h2 className="text-lg font-semibold text-foreground mt-6 mb-3">9. Contact</h2>
               <p className="text-muted-foreground mb-4">
                 For questions about these terms, please contact us at{" "}
-                <a href="mailto:contact@druto.in" className="text-primary hover:underline">
-                  contact@druto.in
+                <a href="mailto:contact@druto.me" className="text-primary hover:underline">
+                  contact@druto.me
                 </a>
               </p>
             </div>
@@ -161,7 +161,7 @@ const Legal = () => {
 
               <h2 className="text-lg font-semibold text-foreground mt-6 mb-3">6. Your Rights</h2>
               <p className="text-muted-foreground mb-4">
-                You have the right to access, correct, or delete your personal data. Contact us at contact@druto.in to exercise these rights.
+                You have the right to access, correct, or delete your personal data. Contact us at contact@druto.me to exercise these rights.
               </p>
 
               <h2 className="text-lg font-semibold text-foreground mt-6 mb-3">7. Cookies and Tracking</h2>
@@ -177,8 +177,8 @@ const Legal = () => {
               <h2 className="text-lg font-semibold text-foreground mt-6 mb-3">9. Contact</h2>
               <p className="text-muted-foreground mb-4">
                 For privacy-related inquiries, please contact us at{" "}
-                <a href="mailto:contact@druto.in" className="text-primary hover:underline">
-                  contact@druto.in
+                <a href="mailto:contact@druto.me" className="text-primary hover:underline">
+                  contact@druto.me
                 </a>
               </p>
             </div>
@@ -227,8 +227,8 @@ const Legal = () => {
               <h2 className="text-lg font-semibold text-foreground mt-6 mb-3">6. Disputes</h2>
               <p className="text-muted-foreground mb-4">
                 For any disputes regarding rewards or stamps, please contact the participating business directly. For platform-related issues, contact us at{" "}
-                <a href="mailto:contact@druto.in" className="text-primary hover:underline">
-                  contact@druto.in
+                <a href="mailto:contact@druto.me" className="text-primary hover:underline">
+                  contact@druto.me
                 </a>
               </p>
             </div>

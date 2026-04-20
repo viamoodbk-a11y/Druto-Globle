@@ -842,7 +842,7 @@ const AdminDashboard = () => {
                                       <div className="hidden">
                                          <QRCodeSVG 
                                             id={`qr-svg-${b.id}`}
-                                            value={`https://druto.in/scan/${b.id}`}
+                                            value={`https://druto.me/scan/${b.id}`}
                                             size={1024}
                                          />
                                       </div>

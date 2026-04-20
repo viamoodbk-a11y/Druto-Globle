@@ -404,7 +404,7 @@ export default function ProfileScreen() {
                             borderTopWidth: 1,
                             borderTopColor: '#F3F4F6',
                         }}
-                        onPress={() => Linking.openURL('https://druto.in/legal?section=privacy')}
+                        onPress={() => Linking.openURL('https://druto.me/legal?section=privacy')}
                     >
                         <View
                             style={{
@@ -433,7 +433,7 @@ export default function ProfileScreen() {
                             borderTopWidth: 1,
                             borderTopColor: '#F3F4F6',
                         }}
-                        onPress={() => Linking.openURL('mailto:support@druto.in')}
+                        onPress={() => Linking.openURL('mailto:support@druto.me')}
                     >
                         <View
                             style={{
